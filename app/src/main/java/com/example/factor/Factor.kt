@@ -6,6 +6,7 @@ import kotlin.math.floor
 
 class Factor {
     public var factorized: MutableList<Long> = ArrayList()
+    var iter: Int = 0
 
     fun find_factor(N: Long): MutableList<Long> {
         val res: MutableList<Long> = ArrayList(2)
@@ -15,6 +16,7 @@ class Factor {
         var square: Double
 
         for (k in 1 until N step 1) {
+            this.iter += 1
             square = (x + k).toDouble().pow(2) - N
             if (check_square(square)) {
                 y = sqrt(square).toLong()
@@ -40,5 +42,9 @@ class Factor {
     private fun check_square(square: Double): Boolean {
         val root: Double = sqrt(square)
         return (root - floor(root) == 0.0)
+    }
+
+    public fun get_iter(): Int {
+        return this.iter
     }
 }
